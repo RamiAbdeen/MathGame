@@ -25,7 +25,7 @@ enQuestionsLevel ReadQuestionLevel()
 
 	do
 	{
-		cout << "Select the game level: [1] Addition, [2] Medium, [3] Hard, [4] Mix\n";
+		cout << "Select the game level: [1] Easy, [2] Medium, [3] Hard, [4] Mix\n";
 		cin >> QuestionLevel;
 	} while (QuestionLevel < 1 || QuestionLevel > 4);
 
@@ -45,8 +45,22 @@ enOperation ReadOperationType()
 	return (enOperation)OperationType;
 }
 
-int main()
+void DisplayRoundScreen(short RoundNumber, short NumberOfRounds)
 {
+	int YourAnswer;
+
+	cout << "Round [" << RoundNumber << "/" << NumberOfRounds << "]\n\n";
+	cout << RandomNumber() << endl;
+	cout << RandomNumber() << "   " << OperationType() << endl;
+	cout << "------------------------\n";
+	cin >> YourAnswer;
+
+	DisplayRoundResult();
+}
+
+int main()
+{	
+	
 	
 	return 0;
 }
