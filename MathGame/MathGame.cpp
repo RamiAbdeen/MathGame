@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -78,26 +79,22 @@ short GetRandomNumberAccordingToLevel(enQuestionsLevel QuestionLevel)
 	case enQuestionsLevel::Easy:
 	{
 		return GetRandomNumber(1, 10);
-		break;
 	}
 	case enQuestionsLevel::Medium:
 	{
 		return GetRandomNumber(10, 50);
-		break;
 	}
 	case enQuestionsLevel::Hard:
 	{
 		return GetRandomNumber(50, 100);
-		break;
 	}
 	case enQuestionsLevel::Mix:
 	{
 		return GetRandomNumber(1, 100);
-		break;
 	}
 	default:
 	{
-		cout << "\nNothing here! Go back )-: |...| :-(\n";
+		return GetRandomNumber(1, 10);
 	}
 	}
 }
@@ -109,31 +106,26 @@ char GetOperationTypeSymbol(enOperation OpType)
 	case enOperation::Addition:
 	{
 		return '+';
-		break;
 	}
 	case enOperation::Subtraction:
 	{
 		return '-';
-		break;
 	}
 	case enOperation::Multiplication:
 	{
 		return '*';
-		break;
 	}
 	case enOperation::Division:
 	{
 		return '/';
-		break;
 	}
 	case enOperation::MixOp:
 	{
 		return GetOperationTypeSymbol((enOperation)GetRandomNumber(1, 4));
-		break;
 	}
 	default:
 	{
-		cout << "\nNothing here! Go back )-: |...| :-(\n";
+		return '+';
 	}
 	}
 }
@@ -143,7 +135,7 @@ void DisplayRoundResult(stRoundElements Round, int UserAnswer)
 	if (UserAnswer == Round.ComputerResult)
 	{
 		cout << "\nCorrect Answer :-)\n";
-		system("A0");
+		system("color A0");
 	}
 	else
 	{
