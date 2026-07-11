@@ -52,6 +52,37 @@ short GetRandomNumber(short From, short To)
 	return RandomNumber;
 }
 
+short GetRandomNumberAccordingToLevel(enQuestionsLevel QuestionLevel)
+{
+	switch (QuestionLevel)
+	{
+	case enQuestionsLevel::Easy:
+	{
+		return GetRandomNumber(1, 10);
+		break;
+	}
+	case enQuestionsLevel::Medium:
+	{
+		return GetRandomNumber(10, 50);
+		break;
+	}
+	case enQuestionsLevel::Hard:
+	{
+		return GetRandomNumber(50, 100);
+		break;
+	}
+	case enQuestionsLevel::Mix:
+	{
+		return GetRandomNumber(1, 100);
+		break;
+	}
+	default:
+	{
+		cout << "\nNothing here! Go back )-: |...| :-(\n";
+	}
+	}
+}
+
 void DisplayRoundScreen(short RoundNumber, short NumberOfRounds)
 {
 	int YourAnswer;
