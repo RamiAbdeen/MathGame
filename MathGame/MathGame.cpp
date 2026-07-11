@@ -83,13 +83,49 @@ short GetRandomNumberAccordingToLevel(enQuestionsLevel QuestionLevel)
 	}
 }
 
-void DisplayRoundScreen(short RoundNumber, short NumberOfRounds)
+char GetOperationTypeSymbol(enOperation OpType)
+{
+	switch (OpType)
+	{
+	case enOperation::Addition:
+	{
+		return '+';
+		break;
+	}
+	case enOperation::Subtraction:
+	{
+		return '-';
+		break;
+	}
+	case enOperation::Multiplication:
+	{
+		return '*';
+		break;
+	}
+	case enOperation::Division:
+	{
+		return '/';
+		break;
+	}
+	case enOperation::MixOp:
+	{
+		return GetOperationTypeSymbol((enOperation)GetRandomNumber(1, 4));
+		break;
+	}
+	default:
+	{
+		cout << "\nNothing here! Go back )-: |...| :-(\n";
+	}
+	}
+}
+
+void DisplayRoundScreen(short RoundNumber, short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
 {
 	int YourAnswer;
 
 	cout << "Round [" << RoundNumber << "/" << NumberOfRounds << "]\n\n";
-	cout << GetRandomNumberAccordingToLevel() << endl;
-	cout << GetRandomNumberAccordingToLevel() << "   " << OperationType() << endl;
+	cout << GetRandomNumberAccordingToLevel(QuestionLevel) << endl;
+	cout << GetRandomNumberAccordingToLevel(QuestionLevel) << "   " << GetOperationTypeSymbol(OpType) << endl;
 	cout << "------------------------\n";
 	cin >> YourAnswer;
 
