@@ -296,7 +296,33 @@ void StartGame()
 	} while (PlayAgain == 'Y' || PlayAgain == 'y');
 }
 
-
+void PerformOption(enOption Option)
+{
+	switch (Option)
+	{
+	case enOption::Breif:
+	{
+		DisplayBreif();
+		system("pause");
+		break;
+	}
+	case enOption::Start:
+	{
+		StartGame();
+		break;
+ 	}
+	case enOption::Exit:
+	{
+		DisplayExit();
+		system("pause");
+		break;
+	}
+	default:
+	{
+		cout << "Next time select a valid option please {-:\n";
+	}
+	}
+}
 
 void MainMenu()
 {
