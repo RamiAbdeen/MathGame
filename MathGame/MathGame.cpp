@@ -45,13 +45,20 @@ enOperation ReadOperationType()
 	return (enOperation)OperationType;
 }
 
+short GetRandomNumber(short From, short To)
+{
+	short RandomNumber = rand() % (To - From + 1) + From;
+
+	return RandomNumber;
+}
+
 void DisplayRoundScreen(short RoundNumber, short NumberOfRounds)
 {
 	int YourAnswer;
 
 	cout << "Round [" << RoundNumber << "/" << NumberOfRounds << "]\n\n";
-	cout << RandomNumber() << endl;
-	cout << RandomNumber() << "   " << OperationType() << endl;
+	cout << GetRandomNumberAccordingToLevel() << endl;
+	cout << GetRandomNumberAccordingToLevel() << "   " << OperationType() << endl;
 	cout << "------------------------\n";
 	cin >> YourAnswer;
 
@@ -60,7 +67,7 @@ void DisplayRoundScreen(short RoundNumber, short NumberOfRounds)
 
 int main()
 {	
-	
+	srand((unsigned)time(NULL));
 	
 	return 0;
 }
