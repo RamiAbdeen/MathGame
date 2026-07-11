@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -203,6 +204,23 @@ void GenerateRounds(stRoundsCharacteristics Rounds)
 		system("color 07");
 		DisplayRound(RoundNumber, Rounds);
 		system("pause");
+	}
+}
+
+string QuestionLevelString(enQuestionsLevel QuestionLevel)
+{
+	switch (QuestionLevel)
+	{
+	case enQuestionsLevel::Easy:
+		return "Easy";
+	case enQuestionsLevel::Medium:
+		return "Medium";
+	case enQuestionsLevel::Hard:
+		return "Hard";
+	case enQuestionsLevel::Mix:
+		return "Mix";
+	default:
+		return "Easy";
 	}
 }
 
