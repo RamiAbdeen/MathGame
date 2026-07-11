@@ -119,17 +119,34 @@ char GetOperationTypeSymbol(enOperation OpType)
 	}
 }
 
+void DisplayRoundResult(int UserAnswer, int ComputerResult)
+{
+	if (UserAnswer == ComputerResult)
+	{
+		cout << "\nCorrect Answer :-)\n";
+		system("A0");
+	}
+	else
+	{
+		cout << "\nWrong Answer :-(\a\n";
+		system("color 47");
+	}
+}
+
 void DisplayRoundScreen(short RoundNumber, short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
 {
-	int YourAnswer;
+	int UserAnswer;
+	int ComputerResult;
 
 	cout << "Round [" << RoundNumber << "/" << NumberOfRounds << "]\n\n";
 	cout << GetRandomNumberAccordingToLevel(QuestionLevel) << endl;
 	cout << GetRandomNumberAccordingToLevel(QuestionLevel) << "   " << GetOperationTypeSymbol(OpType) << endl;
 	cout << "------------------------\n";
-	cin >> YourAnswer;
+	cin >> UserAnswer;
 
-	DisplayRoundResult();
+	ComputerResult = GetComputerResult(Number1, Number2, OpTypeSymbol);
+
+	DisplayRoundResult(UserAnswer, ComputerResult);
 }
 
 int main()
