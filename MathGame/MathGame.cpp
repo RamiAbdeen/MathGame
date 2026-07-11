@@ -224,6 +224,25 @@ string QuestionLevelString(enQuestionsLevel QuestionLevel)
 	}
 }
 
+string OpTypeString(enOperation Optype)
+{
+	switch (Optype)
+	{
+	case enOperation::Addition:
+		return "Addition";
+	case enOperation::Subtraction:
+		return "Subtraction";
+	case enOperation::Multiplication:
+		return "Multiplication";
+	case enOperation::Division:
+		return "Division";
+	case enOperation::MixOp:
+		return "Mix";
+	default:
+		return "Addition";
+	}
+}
+
 void DisplayFinalResult(stRoundsCharacteristics Rounds)
 {
 	system("cls");
