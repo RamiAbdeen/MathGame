@@ -296,12 +296,28 @@ void StartGame()
 	} while (PlayAgain == 'Y' || PlayAgain == 'y');
 }
 
+void DisplayBreif()
+{
+	cout << "----------------------------------\n";
+	cout << "\t\tBreif\n";
+	cout << "----------------------------------\n";
+	cout << "How to play this game?\n";
+	cout << "(1) Enter number of rounds.\n";
+	cout << "(2) Enter the level of difficulty.\n";
+	cout << "(3) Enter operation type.\n";
+	cout << "(4) The computer will generate rounds.\n";
+	cout << "(5) Enter your answer.";
+	cout << "(6) The result will be calculated and displayed.\n";
+	cout << "----------------------------------\n";
+}
+
 void PerformOption(enOption Option)
 {
 	switch (Option)
 	{
 	case enOption::Breif:
 	{
+		system("cls");
 		DisplayBreif();
 		system("pause");
 		break;
@@ -313,6 +329,7 @@ void PerformOption(enOption Option)
  	}
 	case enOption::Exit:
 	{
+		system("cls");
 		DisplayExit();
 		system("pause");
 		break;
