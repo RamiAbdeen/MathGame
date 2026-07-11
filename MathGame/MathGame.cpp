@@ -311,6 +311,13 @@ void DisplayBreif()
 	cout << "----------------------------------\n";
 }
 
+void DisplayExit()
+{
+	cout << "----------------------------------\n";
+	cout << "\t\tExit Game\n";
+	cout << "----------------------------------\n";
+}
+
 void PerformOption(enOption Option)
 {
 	switch (Option)
@@ -336,7 +343,7 @@ void PerformOption(enOption Option)
 	}
 	default:
 	{
-		cout << "Next time select a valid option please {-:\n";
+		cout << "Select a valid option please {-:\n";
 	}
 	}
 }
@@ -345,27 +352,33 @@ void MainMenu()
 {
 	short Option;
 
-	cout << "----------------------------------\n";
-	cout << "\t\tMain Menu\n";
-	cout << "----------------------------------\n";
+	do
+	{
+		system("cls");
 
-	cout << "Welcome to MathGame :-<)\n";
-	cout << "[1] Brief\n";
-	cout << "[2] Start game\n";
-	cout << "[3] Exit\n";
+		cout << "----------------------------------\n";
+		cout << "\t\tMain Menu\n";
+		cout << "----------------------------------\n";
 
-	cout << "----------------------------------\n";
-	cout << "Select option: ";
-	cin >> Option;
+		cout << "Welcome to MathGame :-<)\n";
+		cout << "[1] Brief\n";
+		cout << "[2] Start game\n";
+		cout << "[3] Exit\n";
 
-	PerformOption((enOption)Option);
+		cout << "----------------------------------\n";
+		cout << "Select option: ";
+		cin >> Option;
+
+		PerformOption((enOption)Option);
+
+	} while (Option != 3);
 }
 
 int main()
 {	
 	srand((unsigned)time(NULL));
 
-	StartGame();
+	MainMenu();
 	
 	return 0;
 }
