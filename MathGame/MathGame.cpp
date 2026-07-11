@@ -8,6 +8,8 @@ enum enQuestionsLevel { Easy = 1, Medium = 2, Hard = 3, Mix = 4 };
 
 enum enOperation { Addition = 1, Subtraction = 2, Multiplication = 3, Division = 4, MixOp = 5 };
 
+enum enOption { Breif = 1, Start = 2, Exit = 3 };
+
 struct stRoundElements
 {
 	short Number1;
@@ -32,7 +34,7 @@ short ReadNumberOfRounds()
 
 	do
 	{
-		cout << "How many rounds do you want to play? ";
+		cout << "How many rounds do you want to play?\n";
 		cin >> NumberOfRounds;
 	} while (NumberOfRounds < 0);
 
@@ -292,6 +294,28 @@ void StartGame()
 		cin >> PlayAgain;
 
 	} while (PlayAgain == 'Y' || PlayAgain == 'y');
+}
+
+
+
+void MainMenu()
+{
+	short Option;
+
+	cout << "----------------------------------\n";
+	cout << "\t\tMain Menu\n";
+	cout << "----------------------------------\n";
+
+	cout << "Welcome to MathGame :-<)\n";
+	cout << "[1] Brief\n";
+	cout << "[2] Start game\n";
+	cout << "[3] Exit\n";
+
+	cout << "----------------------------------\n";
+	cout << "Select option: ";
+	cin >> Option;
+
+	PerformOption((enOption)Option);
 }
 
 int main()
