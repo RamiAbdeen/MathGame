@@ -14,6 +14,7 @@ struct stRoundElements
 	short Number2;
 	char OpTypeSymbol;
 	int ComputerResult;
+	int UserAnswer;
 };
 
 struct stRoundsCharacteristics
@@ -23,7 +24,6 @@ struct stRoundsCharacteristics
 	enOperation OpType;
 	short Wins = 0;
 	short Loses = 0;
-	short Draws = 0;
 };
 
 short ReadNumberOfRounds()
@@ -130,9 +130,9 @@ char GetOperationTypeSymbol(enOperation OpType)
 	}
 }
 
-void DisplayRoundResult(stRoundElements Round, int UserAnswer)
+void DisplayRoundResult(stRoundElements Round)
 {
-	if (UserAnswer == Round.ComputerResult)
+	if (Round.UserAnswer == Round.ComputerResult)
 	{
 		cout << "\nCorrect Answer :-)\n";
 		system("color A0");
@@ -174,18 +174,26 @@ stRoundElements GenerateRoundElements(stRoundsCharacteristics Rounds)
 	return Round;
 }
 
+void CountResults(stRoundsCharacteristics& Rounds, stRoundElements Round)
+{
+	if (Round.UserAnswer == Round.ComputerResult)
+		Rounds.Wins++;
+	else
+		Rounds.Loses++;
+}
+
 void DisplayRound(short RoundNumber, stRoundsCharacteristics Rounds)
 {
 	stRoundElements Round = GenerateRoundElements(Rounds);
-	int UserAnswer;
 
 	cout << "Round [" << RoundNumber << "/" << Rounds.NumberOfRounds << "]\n\n";
 	cout << Round.Number1 << endl;
 	cout << Round.Number2 << "   " << Round.OpTypeSymbol << endl;
 	cout << "------------------------\n";
-	cin >> UserAnswer;
+	cin >> Round.UserAnswer;
 
-	DisplayRoundResult(Round, UserAnswer);
+	DisplayRoundResult(Round);
+	CountResults(Rounds, Round);
 }
 
 void GenerateRounds(stRoundsCharacteristics Rounds)
@@ -248,7 +256,6 @@ void DisplayFinalResult(stRoundsCharacteristics Rounds)
 	cout << "Type of Operation  : " << OpTypeString(Rounds.OpType) << endl;
 	cout << "Wins               : " << Rounds.Wins << endl;
 	cout << "Loses              : " << Rounds.Loses << endl;
-	cout << "Draws              : " << Rounds.Draws << endl;
 	cout << "--------------------------------\n";
 
 	system("pause");
