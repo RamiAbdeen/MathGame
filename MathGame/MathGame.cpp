@@ -243,6 +243,16 @@ string OpTypeString(enOperation Optype)
 	}
 }
 
+string GameResult(stRoundsCharacteristics Rounds)
+{
+	if (Rounds.Wins == Rounds.Loses)
+		return "Draw";
+	else if (Rounds.Wins > Rounds.Loses)
+		return "Win";
+	else
+		return "Lose";
+}
+
 void DisplayFinalResult(stRoundsCharacteristics Rounds)
 {
 	system("cls");
@@ -253,9 +263,10 @@ void DisplayFinalResult(stRoundsCharacteristics Rounds)
 	cout << "--------------------------------\n";
 	cout << "Number of rounds   : " << Rounds.NumberOfRounds << endl;
 	cout << "Level of difficulty: " << QuestionLevelString(Rounds.QuestionLevel) << endl;
-	cout << "Type of Operation  : " << OpTypeString(Rounds.OpType) << endl;
+	cout << "Type of operation  : " << OpTypeString(Rounds.OpType) << endl;
 	cout << "Wins               : " << Rounds.Wins << endl;
 	cout << "Loses              : " << Rounds.Loses << endl;
+	cout << "Game result        : " << GameResult(Rounds) << endl;
 	cout << "--------------------------------\n";
 
 	system("pause");
