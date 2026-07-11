@@ -6,6 +6,14 @@ enum enQuestionsLevel { Easy = 1, Medium = 2, Hard = 3, Mix = 4 };
 
 enum enOperation { Addition = 1, Subtraction = 2, Multiplication = 3, Division = 4, MixOp = 5 };
 
+struct stRoundElements
+{
+	short Number1;
+	short Number2;
+	char OpTypeSymbol;
+	int ComputerResult;
+};
+
 short ReadNumberOfRounds()
 {
 	short NumberOfRounds;
@@ -119,9 +127,9 @@ char GetOperationTypeSymbol(enOperation OpType)
 	}
 }
 
-void DisplayRoundResult(int UserAnswer, int ComputerResult)
+void DisplayRoundResult(stRoundElements Round, int UserAnswer)
 {
-	if (UserAnswer == ComputerResult)
+	if (UserAnswer == Round.ComputerResult)
 	{
 		cout << "\nCorrect Answer :-)\n";
 		system("A0");
@@ -129,6 +137,7 @@ void DisplayRoundResult(int UserAnswer, int ComputerResult)
 	else
 	{
 		cout << "\nWrong Answer :-(\a\n";
+		cout << "The right answer is " << Round.ComputerResult << endl;
 		system("color 47");
 	}
 }
@@ -150,23 +159,30 @@ int GetComputerResult(short Number1, short Number2, char OpTypeSymbol)
 	}
 }
 
+stRoundElements GenerateRoundElements(enQuestionsLevel QuestionLevel, enOperation OpType)
+{
+	stRoundElements Round;
+
+	Round.Number1 = GetRandomNumberAccordingToLevel(QuestionLevel);
+	Round.Number2 = GetRandomNumberAccordingToLevel(QuestionLevel);
+	Round.OpTypeSymbol = GetOperationTypeSymbol(OpType);
+	Round.ComputerResult = GetComputerResult(Round.Number1, Round.Number2, Round.OpTypeSymbol);
+
+	return Round;
+}
+
 void DisplayRoundScreen(short RoundNumber, short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
 {
+	stRoundElements Round = GenerateRoundElements(QuestionLevel, OpType);
 	int UserAnswer;
-	int ComputerResult;
-	short Number1 = GetRandomNumberAccordingToLevel(QuestionLevel);
-	short Number2 = GetRandomNumberAccordingToLevel(QuestionLevel);
-	char OpTypeSymbol = GetOperationTypeSymbol(OpType);
 
 	cout << "Round [" << RoundNumber << "/" << NumberOfRounds << "]\n\n";
-	cout << Number1 << endl;
-	cout << Number2 << "   " << OpTypeSymbol << endl;
+	cout << Round.Number1 << endl;
+	cout << Round.Number2 << "   " << Round.OpTypeSymbol << endl;
 	cout << "------------------------\n";
 	cin >> UserAnswer;
 
-	ComputerResult = GetComputerResult(Number1, Number2, OpTypeSymbol);
-
-	DisplayRoundResult(UserAnswer, ComputerResult);
+	DisplayRoundResult(Round, UserAnswer);
 }
 
 int main()
