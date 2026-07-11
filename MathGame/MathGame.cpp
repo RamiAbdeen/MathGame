@@ -157,13 +157,13 @@ int GetComputerResult(short Number1, short Number2, char OpTypeSymbol)
 {
 	switch (OpTypeSymbol)
 	{
-	case enOperation::Addition:
+	case '+':
 		return (Number1 + Number2);
-	case enOperation::Subtraction:
+	case '-':
 		return (Number1 - Number2);
-	case enOperation::Multiplication:
+	case '*':
 		return (Number1 * Number2);
-	case enOperation::Division:
+	case '/':
 		return (Number1 / Number2);
 	default:
 		return (Number1 + Number2);
@@ -251,12 +251,13 @@ void DisplayFinalResult(stRoundsCharacteristics Rounds)
 	cout << "--------------------------------\n";
 	cout << "\tFinal Result\n";
 	cout << "--------------------------------\n";
-	cout << "Number of rounds: " << Rounds.NumberOfRounds << endl;
+	cout << "Number of rounds   : " << Rounds.NumberOfRounds << endl;
 	cout << "Level of difficulty: " << QuestionLevelString(Rounds.QuestionLevel) << endl;
-	cout << "Type of Operation: " << OpTypeString(Rounds.OpType) << endl;
-	cout << "Wins: " << Rounds.Wins << endl;
-	cout << "Loses: " << Rounds.Loses << endl;
-	cout << "Draws: " << Rounds.Draws << endl;
+	cout << "Type of Operation  : " << OpTypeString(Rounds.OpType) << endl;
+	cout << "Wins               : " << Rounds.Wins << endl;
+	cout << "Loses              : " << Rounds.Loses << endl;
+	cout << "Draws              : " << Rounds.Draws << endl;
+	cout << "--------------------------------\n";
 
 	system("pause");
 }
@@ -280,12 +281,14 @@ void StartGame()
 		cout << "\nDo you want to play again? Y/N\n";
 		cin >> PlayAgain;
 
-	} while (PlayAgain != 'Y' || PlayAgain != 'y');
+	} while (PlayAgain == 'Y' || PlayAgain == 'y');
 }
 
 int main()
 {	
 	srand((unsigned)time(NULL));
+
+	StartGame();
 	
 	return 0;
 }
