@@ -133,14 +133,34 @@ void DisplayRoundResult(int UserAnswer, int ComputerResult)
 	}
 }
 
+int GetComputerResult(short Number1, short Number2, char OpTypeSymbol)
+{
+	switch (OpTypeSymbol)
+	{
+	case enOperation::Addition:
+		return (Number1 + Number2);
+	case enOperation::Subtraction:
+		return (Number1 - Number2);
+	case enOperation::Multiplication:
+		return (Number1 * Number2);
+	case enOperation::Division:
+		return (Number1 / Number2);
+	default:
+		return (Number1 + Number2);
+	}
+}
+
 void DisplayRoundScreen(short RoundNumber, short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
 {
 	int UserAnswer;
 	int ComputerResult;
+	short Number1 = GetRandomNumberAccordingToLevel(QuestionLevel);
+	short Number2 = GetRandomNumberAccordingToLevel(QuestionLevel);
+	char OpTypeSymbol = GetOperationTypeSymbol(OpType);
 
 	cout << "Round [" << RoundNumber << "/" << NumberOfRounds << "]\n\n";
-	cout << GetRandomNumberAccordingToLevel(QuestionLevel) << endl;
-	cout << GetRandomNumberAccordingToLevel(QuestionLevel) << "   " << GetOperationTypeSymbol(OpType) << endl;
+	cout << Number1 << endl;
+	cout << Number2 << "   " << OpTypeSymbol << endl;
 	cout << "------------------------\n";
 	cin >> UserAnswer;
 
