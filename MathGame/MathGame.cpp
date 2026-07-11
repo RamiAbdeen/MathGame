@@ -19,6 +19,9 @@ struct stRoundsCharacteristics
 	short NumberOfRounds;
 	enQuestionsLevel QuestionLevel;
 	enOperation OpType;
+	short Wins = 0;
+	short Loses = 0;
+	short Draws = 0;
 };
 
 short ReadNumberOfRounds()
@@ -197,9 +200,28 @@ void GenerateRounds(stRoundsCharacteristics Rounds)
 	for (short RoundNumber = 1; RoundNumber <= Rounds.NumberOfRounds; RoundNumber++)
 	{
 		system("cls");
+		system("color 07");
 		DisplayRound(RoundNumber, Rounds);
 		system("pause");
 	}
+}
+
+void DisplayFinalResult(stRoundsCharacteristics Rounds)
+{
+	system("cls");
+	system("color 07");
+
+	cout << "--------------------------------\n";
+	cout << "\tFinal Result\n";
+	cout << "--------------------------------\n";
+	cout << "Number of rounds: " << Rounds.NumberOfRounds << endl;
+	cout << "Level of difficulty: " << QuestionLevelString(Rounds.QuestionLevel) << endl;
+	cout << "Type of Operation: " << OpTypeString(Rounds.OpType) << endl;
+	cout << "Wins: " << Rounds.Wins << endl;
+	cout << "Loses: " << Rounds.Loses << endl;
+	cout << "Draws: " << Rounds.Draws << endl;
+
+	system("pause");
 }
 
 void StartGame()
@@ -216,7 +238,7 @@ void StartGame()
 		Rounds.OpType = ReadOperationType();
 
 		GenerateRounds(Rounds);
-		DisplayFinalResult(Wins, Loses, Draws);
+		DisplayFinalResult(Rounds);
 
 		cout << "\nDo you want to play again? Y/N\n";
 		cin >> PlayAgain;
