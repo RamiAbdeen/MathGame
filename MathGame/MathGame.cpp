@@ -14,6 +14,13 @@ struct stRoundElements
 	int ComputerResult;
 };
 
+struct stRoundsCharacteristics
+{
+	short NumberOfRounds;
+	enQuestionsLevel QuestionLevel;
+	enOperation OpType;
+};
+
 short ReadNumberOfRounds()
 {
 	short NumberOfRounds;
@@ -159,24 +166,24 @@ int GetComputerResult(short Number1, short Number2, char OpTypeSymbol)
 	}
 }
 
-stRoundElements GenerateRoundElements(enQuestionsLevel QuestionLevel, enOperation OpType)
+stRoundElements GenerateRoundElements(stRoundsCharacteristics Rounds)
 {
 	stRoundElements Round;
 
-	Round.Number1 = GetRandomNumberAccordingToLevel(QuestionLevel);
-	Round.Number2 = GetRandomNumberAccordingToLevel(QuestionLevel);
-	Round.OpTypeSymbol = GetOperationTypeSymbol(OpType);
+	Round.Number1 = GetRandomNumberAccordingToLevel(Rounds.QuestionLevel);
+	Round.Number2 = GetRandomNumberAccordingToLevel(Rounds.QuestionLevel);
+	Round.OpTypeSymbol = GetOperationTypeSymbol(Rounds.OpType);
 	Round.ComputerResult = GetComputerResult(Round.Number1, Round.Number2, Round.OpTypeSymbol);
 
 	return Round;
 }
 
-void DisplayRound(short RoundNumber, short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
+void DisplayRound(short RoundNumber, stRoundsCharacteristics Rounds)
 {
-	stRoundElements Round = GenerateRoundElements(QuestionLevel, OpType);
+	stRoundElements Round = GenerateRoundElements(Rounds);
 	int UserAnswer;
 
-	cout << "Round [" << RoundNumber << "/" << NumberOfRounds << "]\n\n";
+	cout << "Round [" << RoundNumber << "/" << Rounds.NumberOfRounds << "]\n\n";
 	cout << Round.Number1 << endl;
 	cout << Round.Number2 << "   " << Round.OpTypeSymbol << endl;
 	cout << "------------------------\n";
@@ -185,12 +192,36 @@ void DisplayRound(short RoundNumber, short NumberOfRounds, enQuestionsLevel Ques
 	DisplayRoundResult(Round, UserAnswer);
 }
 
-void GenerateRounds(short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
+void GenerateRounds(stRoundsCharacteristics Rounds)
 {
-	for (short RoundNumber = 1; RoundNumber <= NumberOfRounds; RoundNumber++)
+	for (short RoundNumber = 1; RoundNumber <= Rounds.NumberOfRounds; RoundNumber++)
 	{
-		DisplayRound(RoundNumber, NumberOfRounds, QuestionLevel, OpType);
+		system("cls");
+		DisplayRound(RoundNumber, Rounds);
+		system("pause");
 	}
+}
+
+void StartGame()
+{
+	char PlayAgain = 'y';
+	do
+	{
+		system("cls");
+
+		stRoundsCharacteristics Rounds;
+
+		Rounds.NumberOfRounds = ReadNumberOfRounds();
+		Rounds.QuestionLevel = ReadQuestionLevel();
+		Rounds.OpType = ReadOperationType();
+
+		GenerateRounds(Rounds);
+		DisplayFinalResult(Wins, Loses, Draws);
+
+		cout << "\nDo you want to play again? Y/N\n";
+		cin >> PlayAgain;
+
+	} while (PlayAgain != 'Y' || PlayAgain != 'y');
 }
 
 int main()
