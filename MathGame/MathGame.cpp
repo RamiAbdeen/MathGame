@@ -182,7 +182,7 @@ void CountResults(stRoundsCharacteristics& Rounds, stRoundElements Round)
 		Rounds.Loses++;
 }
 
-void DisplayRound(short RoundNumber, stRoundsCharacteristics Rounds)
+void DisplayRound(short RoundNumber, stRoundsCharacteristics& Rounds)
 {
 	stRoundElements Round = GenerateRoundElements(Rounds);
 
@@ -196,7 +196,7 @@ void DisplayRound(short RoundNumber, stRoundsCharacteristics Rounds)
 	CountResults(Rounds, Round);
 }
 
-void GenerateRounds(stRoundsCharacteristics Rounds)
+void GenerateRounds(stRoundsCharacteristics& Rounds)
 {
 	for (short RoundNumber = 1; RoundNumber <= Rounds.NumberOfRounds; RoundNumber++)
 	{
