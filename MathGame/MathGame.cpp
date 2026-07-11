@@ -171,7 +171,7 @@ stRoundElements GenerateRoundElements(enQuestionsLevel QuestionLevel, enOperatio
 	return Round;
 }
 
-void DisplayRoundScreen(short RoundNumber, short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
+void DisplayRound(short RoundNumber, short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
 {
 	stRoundElements Round = GenerateRoundElements(QuestionLevel, OpType);
 	int UserAnswer;
@@ -183,6 +183,14 @@ void DisplayRoundScreen(short RoundNumber, short NumberOfRounds, enQuestionsLeve
 	cin >> UserAnswer;
 
 	DisplayRoundResult(Round, UserAnswer);
+}
+
+void GenerateRounds(short NumberOfRounds, enQuestionsLevel QuestionLevel, enOperation OpType)
+{
+	for (short RoundNumber = 1; RoundNumber <= NumberOfRounds; RoundNumber++)
+	{
+		DisplayRound(RoundNumber, NumberOfRounds, QuestionLevel, OpType);
+	}
 }
 
 int main()
